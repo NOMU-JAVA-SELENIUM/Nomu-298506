@@ -18,31 +18,44 @@ public static void main(String[] args) {
 		driver.get("https://www.saucedemo.com/");
 		
 		// Maximize the browser window
-		driver.manage().window().maximize();
-		// Perform login
-		WebElement username = driver.findElement(By.id("standard_username"));
-		username.sendKeys("standard_username");
+        driver.manage().window().maximize();
+        
+        Thread.sleep(4000);	    // Perform login
+	 	WebElement username = driver.findElement(By.xpath("//input[@id='user-name']"));
+		username.sendKeys("visual_user");
 		
-		WebElement password = driver.findElement(By.id("candidate_password"));
-		password.sendKeys("candidate_password");
+		WebElement password = driver.findElement(By.xpath("//input[@id='password']"));
+		password.sendKeys("secret_sauce");
 		
-		WebElement login_button = driver.findElement(By.id("press_login_button"));
-		login_button.sendKeys("press_login_button");
-		// Success message
-		System.out.println("Login Successful on Saucedemo");
+		WebElement login_button = driver.findElement(By.xpath("//input[@id='login-button']"));
+		login_button.click();
+		
+		Thread.sleep(4000);
+		
+		String title = driver.getTitle();
+		System.out.println(title);
+		
+		String ExpectedTitle = "Swag Labs";
+		
+		if(title.equals(ExpectedTitle))
+		{
+			// Success message
+			System.out.println("Login Successful on Saucedemo");
+		}
+		else 
+		{
+			// Success message
+			System.out.println("Login not Successful on Saucedemo");
+		}	
 		
 		
 	}catch (Exception e)
 	{
-		// Handle exception gracefully
-		System.out.println("An error occured during login automation");
 		e.printStackTrace();
-	} finally {
-		if(driver != null) {
-			//driver.quit();
-		}
+	} 
 	}
 
 }
 
-}
+
+

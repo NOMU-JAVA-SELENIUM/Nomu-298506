@@ -9,40 +9,55 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Register_Selenium_Tutorial {
 	static WebDriver driver;
-	
-	/**
-	 * @param args
-	 */
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) 
 	{
 	WebDriverManager.chromedriver().setup();
 	try {
+		//Launch browser
 		driver = new ChromeDriver();
+		// Navigate to registration page
 		driver.get("https://www.tutorialspoint.com/selenium/practice/register.php");
 		
 		// Maximize the browser window
 		driver.manage().window().maximize();
 		
-		// identify the web element for username and password and enter the credentials
-		WebElement firstname = driver.findElement(By.xpath("input[@name='firstname']"));
+		// Setting time
+		Thread.sleep(4000);
+		
+		// Enter the first name
+		WebElement firstname = driver.findElement(By.xpath("//input[@id='firstname']"));
 		firstname.sendKeys("Nomu");
-		
-		WebElement lastname = driver.findElement(By.xpath("input[@name='lastname']"));
+		// Enter the last name
+		WebElement lastname = driver.findElement(By.xpath("//input[@id='lastname']"));
 		lastname.sendKeys("Thanneru");
+		// Enter the user mail id
+		WebElement username = driver.findElement(By.xpath("//input[@id='username']"));
 		
-		WebElement username = driver.findElement(By.xpath("input[@name='username']"));
+		username.sendKeys("nomunt451.t@gmail.com");
+		// Enter the password
+		WebElement password = driver.findElement(By.xpath("//input[@id='password']"));
 		
-		username.sendKeys("Admin");
-		
-		WebElement password = driver.findElement(By.xpath("input[@name='password']"));
-		
-		password.sendKeys("admin123");
-		
-        WebElement register = driver.findElement(By.xpath("input[@name='submit']"));
+		password.sendKeys("******");
+		//Register the form
+        WebElement register = driver.findElement(By.xpath("//input[@value='Register']"));
         register.click();
+        
+		
+		String title = driver.getTitle();
+		System.out.println(title);
+		
+		String ExpectedTitle = "tutorialspoint";
+		
+		if(title.equals(ExpectedTitle))
+		{
+			// Success message
+			System.out.println("Login Successful on tutorialspoint.com-selenium-practice-register");
+		}
+		else 
+		{
+			// Success message
+			System.out.println("Login not Successful on tutorialspoint.com-selenium-practice-register");
+		}
 	}catch (Exception e)
 	{
 		e.printStackTrace();

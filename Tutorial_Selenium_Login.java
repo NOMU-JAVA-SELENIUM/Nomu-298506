@@ -20,30 +20,44 @@ public class Tutorial_Selenium_Login {
 			
 			// Maximize the browser window
 			driver.manage().window().maximize();
+			// Setting time
+			Thread.sleep(4000);
+			
+			
 			// Perform login
-			WebElement username = driver.findElement(By.id("standard_username"));
+			WebElement username = driver.findElement(By.xpath("//input[@id='email']"));
 			username.sendKeys("standard_username");
 			
-			WebElement password = driver.findElement(By.id("candidate_password"));
+			WebElement password = driver.findElement(By.xpath("//input[@id='password']"));
 			password.sendKeys("candidate_password");
 			
-			WebElement login_button = driver.findElement(By.id("press_login_button"));
-			login_button.sendKeys("press_login_button");
-			// Success message
-			System.out.println("Login Successful on Saucedemo");
+			WebElement login_button = driver.findElement(By.xpath("//input[@value='Login']"));
+			login_button.click();
+			Thread.sleep(4000);
+			
+			String title = driver.getTitle();
+			System.out.println(title);
+			
+			String ExpectedTitle = "Selenium - Automation Practice Form";
+			
+			if(title.equals(ExpectedTitle))
+			{
+				// Success message
+				System.out.println("Login Successful on tutorialspoint.com");
+			}
+			else 
+			{
+				// Success message
+				System.out.println("Login not Successful on tutorialspoint.com");
+			}
 			
 			
 		}catch (Exception e)
 		{
-			// Handle exception gracefully
-			System.out.println("An error occured during login automation");
 			e.printStackTrace();
-		} finally {
-			if(driver != null) {
-				//driver.quit();
-			}
+		} 
 		}
 	}
-}
+
 
 	
