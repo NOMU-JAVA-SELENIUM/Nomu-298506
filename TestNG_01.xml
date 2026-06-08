@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite1" verbose="1">
+  <test name="Selenium tests">
+  <groups>
+    <run>
+      <include name="unit Test"/>
+    </run>
+  </groups>
+  <classes>
+       <class name="Assignments_02_06_26.TestCase_Grouping"/>
+       </classes>
+  </test>
+</suite>
+
